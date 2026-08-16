@@ -4,5 +4,5 @@ contact_links:
     url: https://www.hauntedmc.nl/support
     about: Use support for usage and integration help.
   - name: Security report
-    url: https://github.com/HauntedMC/HauntedMCTheme/security/advisories/new
+    url: https://github.com/HauntedMC/Theme/security/advisories/new
     about: Report vulnerabilities privately.

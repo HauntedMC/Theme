@@ -1,8 +1,8 @@
 # HauntedMC Theme
 
-[![CI](https://github.com/HauntedMC/HauntedMCTheme/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/HauntedMC/HauntedMCTheme/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/HauntedMC/HauntedMCTheme)](https://github.com/HauntedMC/HauntedMCTheme/releases)
-[![License](https://img.shields.io/github/license/HauntedMC/HauntedMCTheme)](LICENSE)
+[![CI](https://github.com/HauntedMC/Theme/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/HauntedMC/Theme/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/HauntedMC/Theme)](https://github.com/HauntedMC/Theme/releases)
+[![License](https://img.shields.io/github/license/HauntedMC/Theme)](LICENSE)
 [![Java 25](https://img.shields.io/badge/Java-25-007396)](https://adoptium.net/)
 
 Versioned HauntedMC colours for Adventure components and FeatureFramework localization.
@@ -21,7 +21,7 @@ Packages credentials when required):
 ```xml
 <repository>
   <id>github</id>
-  <url>https://maven.pkg.github.com/HauntedMC/HauntedMCTheme</url>
+  <url>https://maven.pkg.github.com/HauntedMC/Theme</url>
 </repository>
 ```
 
@@ -85,7 +85,7 @@ Run `./mvnw verify` for the complete quality gate. Use `./update_version.sh majo
 from a clean worktree to prepare a local release commit and tag. Publishing uses the `github`
 Maven server configured by the release workflow.
 
-For a coordinated stack release, publish FeatureFramework first, then HauntedMCTheme, DataProvider, DataRegistry,
+For a coordinated stack release, publish FeatureFramework first, then Theme, DataProvider, DataRegistry,
 and finally ServerFeatures and ProxyFeatures. This follows the dependency graph and keeps every downstream build
 resolvable from GitHub Packages.
 

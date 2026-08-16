@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <name>HauntedMC Theme</name>
     <description>Versioned HauntedMC colour palette and FeatureFramework theme adapter.</description>
-    <url>https://github.com/HauntedMC/HauntedMCTheme</url>
+    <url>https://github.com/HauntedMC/Theme</url>
 
     <licenses>
         <license>
@@ -26,16 +26,16 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:https://github.com/HauntedMC/HauntedMCTheme.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/HauntedMC/HauntedMCTheme.git</developerConnection>
-        <url>https://github.com/HauntedMC/HauntedMCTheme</url>
+        <connection>scm:git:https://github.com/HauntedMC/Theme.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/HauntedMC/Theme.git</developerConnection>
+        <url>https://github.com/HauntedMC/Theme</url>
         <tag>HEAD</tag>
     </scm>
     <distributionManagement>
         <repository>
             <id>github</id>
-            <name>GitHub Packages - HauntedMCTheme</name>
-            <url>https://maven.pkg.github.com/HauntedMC/HauntedMCTheme</url>
+            <name>GitHub Packages - Theme</name>
+            <url>https://maven.pkg.github.com/HauntedMC/Theme</url>
         </repository>
     </distributionManagement>
 

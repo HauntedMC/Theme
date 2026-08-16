@@ -63,4 +63,5 @@ git add pom.xml
 git commit -m "Bump version to ${tag} for release"
 git tag --annotate "$tag" --message "Release ${tag}"
 
-echo "Prepared ${tag}. Push the commit and tag when ready."
+echo "Version updated locally."
+echo "Next step: git push origin HEAD && git push origin ${tag}"
