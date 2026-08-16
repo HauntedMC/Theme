@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      packages: read
+    env:
+      PACKAGES_USER: ${{ secrets.HAUNTEDMC_PACKAGES_USERNAME }}
+      PACKAGES_TOKEN: ${{ secrets.HAUNTEDMC_PACKAGES_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Validate package token
+        shell: bash
+        run: |
+          test -n "$PACKAGES_USER" \
+            || { echo "Missing secret HAUNTEDMC_PACKAGES_USERNAME." >&2; exit 1; }
+          test -n "$PACKAGES_TOKEN" \
+            || { echo "Missing secret HAUNTEDMC_PACKAGES_TOKEN (requires read:packages)." >&2; exit 1; }
+      - name: Set up JDK 25
+        uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961 # v5.7.0
+        with:
+          distribution: temurin
+          java-version: "25"
+          cache: maven
+          server-id: github
+          server-username: PACKAGES_USER
+          server-password: PACKAGES_TOKEN
+      - name: Verify reactor
+        id: verify
+        run: ./mvnw -U -B -ntp verify
+      - name: Print failing test reports
+        if: failure() && steps.verify.outcome == 'failure'
+        shell: bash
+        run: |
+          find . -type f -path '*/target/surefire-reports/*.txt' -print0 \
+            | sort -z \
+            | xargs -0 -r -n1 sh -c 'echo "::group::$0"; cat "$0"; echo "::endgroup::"'
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: test-reports
+          if-no-files-found: warn
+          path: "**/target/surefire-reports"
+      - name: Verify release artifacts
+        run: ./mvnw -B -ntp -Prelease -DskipTests package
+      - name: Check shell scripts
+        shell: bash
+        run: shellcheck update_version.sh

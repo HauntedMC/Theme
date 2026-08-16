@@ -1,0 +1,57 @@
+name: Feature request
+description: Suggest a focused improvement
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: Keep the proposal concrete so maintainers can assess API and compatibility impact.
+  - type: checkboxes
+    id: precheck
+    attributes:
+      label: Pre-check
+      options:
+        - label: I searched existing issues and discussions.
+          required: true
+        - label: This proposal is specific and actionable.
+          required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What problem are you trying to solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the desired API or behaviour.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Palette API
+        - FeatureFramework adapter
+        - Publishing / Maven metadata
+        - Build / CI
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: checkboxes
+    id: compatibility
+    attributes:
+      label: Compatibility impact
+      options:
+        - label: May require a breaking public API change
+          required: false
+        - label: May require a FeatureFramework version change
+          required: false
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered (optional)

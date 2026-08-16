@@ -1,0 +1,13 @@
+target/
+**/target/
+**/.flattened-pom.xml
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.DS_Store
+dependency-reduced-pom.xml
+dependency-reduced-pom.xml.versionsBackup
+settings.xml
+pom.xml.versionsBackup
