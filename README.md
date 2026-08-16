@@ -1,7 +1,6 @@
 # HauntedMC Theme
 
 [![CI](https://github.com/HauntedMC/Theme/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/HauntedMC/Theme/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/HauntedMC/Theme)](https://github.com/HauntedMC/Theme/releases)
 [![License](https://img.shields.io/github/license/HauntedMC/Theme)](LICENSE)
 [![Java 25](https://img.shields.io/badge/Java-25-007396)](https://adoptium.net/)
 
