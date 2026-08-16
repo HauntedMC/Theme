@@ -60,7 +60,7 @@
         <maven.source.version>3.3.1</maven.source.version>
         <maven.javadoc.version>3.11.2</maven.javadoc.version>
         <maven.deploy.version>3.1.4</maven.deploy.version>
-        <flatten.version>1.7.3</flatten.version>
+        <flatten.version>1.8.0</flatten.version>
         <maven.checkstyle.version>3.6.0</maven.checkstyle.version>
         <checkstyle.version>13.8.0</checkstyle.version>
     </properties>
