@@ -4,10 +4,7 @@
 [![License](https://img.shields.io/github/license/HauntedMC/Theme)](LICENSE)
 [![Java 25](https://img.shields.io/badge/Java-25-007396)](https://adoptium.net/)
 
-Versioned HauntedMC colours for Adventure components and FeatureFramework localization.
-
-This repository publishes libraries, not server plugins. Use the palette directly when building Adventure components,
-or use the FeatureFramework adapter to make the same named colours available to localized MiniMessage content.
+Versioned HauntedMC Theme for plugin localization.
 
 ## Artifacts
 
