@@ -14,7 +14,7 @@
     <properties>
         <revision>1.0.0</revision><project.build.outputTimestamp>2026-08-16T00:00:00Z</project.build.outputTimestamp>
         <!-- Theme intentionally remains compatible with the published 1.5.x adapter API. -->
-        <featureframework.version>1.5.0</featureframework.version>
+        <featureframework.version>2.1.1</featureframework.version>
     </properties>
     <repositories><repository><id>central</id><url>https://repo.maven.apache.org/maven2</url></repository><repository><id>github</id><url>https://maven.pkg.github.com/HauntedMC/*</url></repository></repositories>
     <pluginRepositories><pluginRepository><id>github</id><url>https://maven.pkg.github.com/HauntedMC/*</url></pluginRepository></pluginRepositories>
