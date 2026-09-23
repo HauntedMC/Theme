@@ -1,6 +1,7 @@
 package nl.hauntedmc.theme.featureframework;
 
 import nl.hauntedmc.featureframework.theme.Theme;
+import nl.hauntedmc.theme.HauntedMcBranding;
 import nl.hauntedmc.theme.HauntedMcColor;
 
 /** FeatureFramework adapter for the canonical HauntedMC palette. */
@@ -26,6 +27,8 @@ public final class HauntedMcTheme {
         for (HauntedMcColor color : HauntedMcColor.values()) {
             builder.solid(color.itemId(), color.textColor());
         }
+        builder.gradient(HauntedMcBranding.HAUNTED_GRADIENT_ITEM, HauntedMcBranding.hauntedGradient());
+        builder.gradient(HauntedMcBranding.MC_GRADIENT_ITEM, HauntedMcBranding.mcGradient());
         return builder.build();
     }
 }

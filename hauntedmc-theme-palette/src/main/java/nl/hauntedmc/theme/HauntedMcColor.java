@@ -29,7 +29,25 @@ public enum HauntedMcColor {
     /** Staff chat, moderation, and staff alerts. */
     STAFF("Staff", 0xB8A4F8),
     /** Supporting information between default text and muted metadata. */
-    DETAIL("Detail", 0xBAC8D9);
+    DETAIL("Detail", 0xBAC8D9),
+    /** Start of the blue gradient reserved for the HauntedMC wordmark. */
+    WORDMARK_HAUNTED_START("WordmarkHauntedStart", 0x2A78F6),
+    /** End of the blue gradient reserved for the HauntedMC wordmark. */
+    WORDMARK_HAUNTED_END("WordmarkHauntedEnd", 0x6ACDF7),
+    /** Start of the orange gradient reserved for the MC wordmark segment. */
+    WORDMARK_MC_START("WordmarkMcStart", 0xFC7B2F),
+    /** End of the orange gradient reserved for the MC wordmark segment. */
+    WORDMARK_MC_END("WordmarkMcEnd", 0xFB9A34),
+    /** The "since 2013" brand signature. */
+    BRAND_SINCE("BrandSince", 0xD0D6F0),
+    /** Subdued labels and supporting copy in tablists and scoreboards. */
+    UI_TEXT("UiText", 0xAAB2C9),
+    /** Warm emphasis for tablist counts, icons, and compact values. */
+    UI_HIGHLIGHT("UiHighlight", 0xFFD79C),
+    /** Low-contrast structural separator on a dark UI surface. */
+    UI_DIVIDER("UiDivider", 0x1C2F45),
+    /** Focused scoreboard metadata such as time and server address. */
+    UI_AMBER("UiAmber", 0xFFD166);
 
     /** The identifier used by the FeatureFramework theme and its MiniMessage tags. */
     public static final String THEME_IDENTIFIER = "HauntedMC";

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="452" viewBox="0 0 1000 452" role="img" aria-labelledby="title description">
+  <title id="title">HauntedMC branding and compact UI colors</title>
+  <desc id="description">The blue and orange HauntedMC wordmark gradient endpoints, since 2013 signature color, and four tablist and scoreboard color roles on a dark background.</desc>
+  <rect width="1000" height="452" rx="20" fill="#10141F"/>
+  <rect x="24" y="24" width="952" height="404" rx="16" fill="#171D2B" stroke="#364154"/>
+  <text x="52" y="65" fill="#E2E8F0" font-family="Inter, Segoe UI, sans-serif" font-size="25" font-weight="700">Brand and compact UI</text>
+  <text x="52" y="91" fill="#94A3B8" font-family="Inter, Segoe UI, sans-serif" font-size="15">Fixed artwork and contextual interface roles</text>
+
+  <text x="52" y="140" fill="#94A3B8" font-family="Inter, Segoe UI, sans-serif" font-size="14" font-weight="700">WORDMARK</text>
+  <rect x="52" y="161" width="109" height="35" rx="7" fill="#2A78F6"/>
+  <rect x="169" y="161" width="109" height="35" rx="7" fill="#6ACDF7"/>
+  <rect x="290" y="161" width="42" height="35" rx="7" fill="#FC7B2F"/>
+  <rect x="340" y="161" width="42" height="35" rx="7" fill="#FB9A34"/>
+  <text x="52" y="217" fill="#6ACDF7" font-family="Inter, Segoe UI, sans-serif" font-size="14" font-weight="700">HAUNTED</text>
+  <text x="290" y="217" fill="#FB9A34" font-family="Inter, Segoe UI, sans-serif" font-size="14" font-weight="700">MC</text>
+  <text x="52" y="244" fill="#D0D6F0" font-family="Inter, Segoe UI, sans-serif" font-size="18">since 2013</text>
+  <text x="518" y="164" fill="#BAC8D9" font-family="Inter, Segoe UI, sans-serif" font-size="15">Haunted: #2A78F6 - #6ACDF7</text>
+  <text x="518" y="192" fill="#BAC8D9" font-family="Inter, Segoe UI, sans-serif" font-size="15">MC: #FC7B2F - #FB9A34</text>
+  <text x="518" y="220" fill="#BAC8D9" font-family="Inter, Segoe UI, sans-serif" font-size="15">Since: #D0D6F0</text>
+
+  <path d="M 52 262 H 948" stroke="#364154"/>
+  <text x="52" y="296" fill="#94A3B8" font-family="Inter, Segoe UI, sans-serif" font-size="14" font-weight="700">TABLIST AND SCOREBOARD</text>
+  <g font-family="Inter, Segoe UI, sans-serif" font-size="16">
+    <rect x="52" y="316" width="30" height="30" rx="6" fill="#AAB2C9"/>
+    <text x="94" y="338" fill="#AAB2C9" font-weight="700">UiText</text>
+    <text x="52" y="374" fill="#BAC8D9" font-size="13">#AAB2C9 · labels</text>
+
+    <rect x="276" y="316" width="30" height="30" rx="6" fill="#FFD79C"/>
+    <text x="318" y="338" fill="#FFD79C" font-weight="700">UiHighlight</text>
+    <text x="276" y="374" fill="#BAC8D9" font-size="13">#FFD79C · counts</text>
+
+    <rect x="500" y="316" width="30" height="30" rx="6" fill="#1C2F45" stroke="#AAB2C9"/>
+    <text x="542" y="338" fill="#AAB2C9" font-weight="700">UiDivider</text>
+    <text x="500" y="374" fill="#BAC8D9" font-size="13">#1C2F45 · separators</text>
+
+    <rect x="724" y="316" width="30" height="30" rx="6" fill="#FFD166"/>
+    <text x="766" y="338" fill="#FFD166" font-weight="700">UiAmber</text>
+    <text x="724" y="374" fill="#BAC8D9" font-size="13">#FFD166 · time / address</text>
+  </g>
+</svg>

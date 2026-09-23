@@ -8,7 +8,7 @@ Versioned HauntedMC Theme for plugin localization.
 
 ## Artifacts
 
-- `nl.hauntedmc.theme:hauntedmc-theme-palette` exposes `HauntedMcColor` for direct Adventure use.
+- `nl.hauntedmc.theme:hauntedmc-theme-palette` exposes `HauntedMcColor` and `HauntedMcBranding` for direct Adventure use.
 - `nl.hauntedmc.theme:hauntedmc-theme-featureframework` exposes `HauntedMcTheme.theme()`.
 
 The artifacts are published to GitHub Packages. Add the repository to the consuming build (and configure GitHub
@@ -27,7 +27,7 @@ Use the palette without FeatureFramework:
 <dependency>
   <groupId>nl.hauntedmc.theme</groupId>
   <artifactId>hauntedmc-theme-palette</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
 </dependency>
 ```
 
@@ -37,7 +37,7 @@ FeatureFramework hosts can depend on the adapter instead; it brings in the palet
 <dependency>
   <groupId>nl.hauntedmc.theme</groupId>
   <artifactId>hauntedmc-theme-featureframework</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
 </dependency>
 ```
 
@@ -61,6 +61,17 @@ For code that builds Adventure components directly:
 Component.text("Success", HauntedMcColor.SUCCESS.textColor());
 ```
 
+The exact HauntedMC wordmark and signature are available for both localization paths:
+
+```java
+String localizedWordmark = HauntedMcBranding.THEME_WORDMARK;
+String directWordmark = HauntedMcBranding.MINIMESSAGE_WORDMARK;
+String localizedSince = HauntedMcBranding.THEME_SINCE;
+String directSince = HauntedMcBranding.MINIMESSAGE_SINCE;
+```
+
+Use the `THEME_` fragments where FeatureFramework expands theme tags and the `MINIMESSAGE_` fragments with a standard MiniMessage parser. The wordmark has two separately scoped gradients, so it keeps the supplied blue and orange lettering without changing `Brand` or `Accent`.
+
 | Item | Colour |
 |---|---|
 | `Brand` | `#A855F7` |
@@ -77,7 +88,23 @@ Component.text("Success", HauntedMcColor.SUCCESS.textColor());
 | `Staff` | `#B8A4F8` |
 | `Detail` | `#BAC8D9` |
 
-See the [colour contract](docs/color-contract.md) for source and state rules, message examples, and a dark-background palette preview. Existing colour values remain unchanged.
+Brand and UI colors are intentionally narrower in purpose than the general message palette:
+
+| Item | Colour | Use |
+|---|---|---|
+| `WordmarkHauntedStart` | `#2A78F6` | Blue wordmark gradient start |
+| `WordmarkHauntedEnd` | `#6ACDF7` | Blue wordmark gradient end |
+| `WordmarkMcStart` | `#FC7B2F` | Orange wordmark gradient start |
+| `WordmarkMcEnd` | `#FB9A34` | Orange wordmark gradient end |
+| `BrandSince` | `#D0D6F0` | Stylized “since 2013” signature |
+| `UiText` | `#AAB2C9` | Tablist and scoreboard labels |
+| `UiHighlight` | `#FFD79C` | Tablist counts and compact highlights |
+| `UiDivider` | `#1C2F45` | Dark UI separators |
+| `UiAmber` | `#FFD166` | Scoreboard time and server address |
+
+The FeatureFramework theme also registers the scoped `WordmarkHaunted` and `WordmarkMc` gradient items. The existing 13 solid colors retain their values and identifiers.
+
+See the [colour contract](docs/color-contract.md) for source and state rules, message examples, and dark-background previews.
 
 Identifiers are resolved case-insensitively by FeatureFramework. Both artifacts are libraries, not server plugins;
 applications should include them in their distributable jar. The palette has a `provided` Adventure API dependency,
