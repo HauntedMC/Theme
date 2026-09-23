@@ -14,5 +14,9 @@ class HauntedMcThemeTest {
         assertSame(HauntedMcTheme.theme(), HauntedMcTheme.theme());
         assertEquals(HauntedMcColor.BRAND.textColor(),
                 ((ThemeColor.Solid) HauntedMcTheme.theme().item("brand").orElseThrow().color()).color());
+        for (HauntedMcColor color : HauntedMcColor.values()) {
+            assertEquals(color.textColor(),
+                    ((ThemeColor.Solid) HauntedMcTheme.theme().item(color.itemId()).orElseThrow().color()).color());
+        }
     }
 }

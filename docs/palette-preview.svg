@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="535" viewBox="0 0 1000 535" role="img" aria-labelledby="title description">
+  <title id="title">HauntedMC colour palette</title>
+  <desc id="description">The seven original colours and six added colours displayed as labelled text and swatches on a dark chat background.</desc>
+  <rect width="1000" height="535" rx="20" fill="#10141F"/>
+  <rect x="24" y="24" width="952" height="487" rx="16" fill="#171D2B" stroke="#364154"/>
+  <text x="52" y="65" fill="#E2E8F0" font-family="Inter, Segoe UI, sans-serif" font-size="26" font-weight="700">HauntedMC Theme</text>
+  <text x="52" y="91" fill="#94A3B8" font-family="Inter, Segoe UI, sans-serif" font-size="15">Colour roles previewed on a dark chat surface</text>
+  <text x="52" y="133" fill="#94A3B8" font-family="Inter, Segoe UI, sans-serif" font-size="14" font-weight="700">ORIGINAL ROLES</text>
+  <text x="532" y="133" fill="#94A3B8" font-family="Inter, Segoe UI, sans-serif" font-size="14" font-weight="700">SOURCE AND DETAIL ROLES</text>
+  <path d="M 505 123 V 485" stroke="#364154"/>
+  <g font-family="Inter, Segoe UI, sans-serif">
+    <rect x="52" y="154" width="26" height="26" rx="6" fill="#A855F7"/>
+    <text x="94" y="174" fill="#A855F7" font-size="18" font-weight="700">Brand</text>
+    <text x="369" y="173" fill="#BAC8D9" font-size="14">#A855F7</text>
+
+    <rect x="52" y="202" width="26" height="26" rx="6" fill="#38BDF8"/>
+    <text x="94" y="222" fill="#38BDF8" font-size="18" font-weight="700">Accent</text>
+    <text x="369" y="221" fill="#BAC8D9" font-size="14">#38BDF8</text>
+
+    <rect x="52" y="250" width="26" height="26" rx="6" fill="#4ADE80"/>
+    <text x="94" y="270" fill="#4ADE80" font-size="18" font-weight="700">Success</text>
+    <text x="369" y="269" fill="#BAC8D9" font-size="14">#4ADE80</text>
+
+    <rect x="52" y="298" width="26" height="26" rx="6" fill="#FACC15"/>
+    <text x="94" y="318" fill="#FACC15" font-size="18" font-weight="700">Warning</text>
+    <text x="369" y="317" fill="#BAC8D9" font-size="14">#FACC15</text>
+
+    <rect x="52" y="346" width="26" height="26" rx="6" fill="#FB7185"/>
+    <text x="94" y="366" fill="#FB7185" font-size="18" font-weight="700">Error</text>
+    <text x="369" y="365" fill="#BAC8D9" font-size="14">#FB7185</text>
+
+    <rect x="52" y="394" width="26" height="26" rx="6" fill="#94A3B8"/>
+    <text x="94" y="414" fill="#94A3B8" font-size="18" font-weight="700">Muted</text>
+    <text x="369" y="413" fill="#BAC8D9" font-size="14">#94A3B8</text>
+
+    <rect x="52" y="442" width="26" height="26" rx="6" fill="#E2E8F0"/>
+    <text x="94" y="462" fill="#E2E8F0" font-size="18" font-weight="700">Text</text>
+    <text x="369" y="461" fill="#BAC8D9" font-size="14">#E2E8F0</text>
+
+    <rect x="532" y="154" width="26" height="26" rx="6" fill="#F9A8D4"/>
+    <text x="574" y="174" fill="#F9A8D4" font-size="18" font-weight="700">Social</text>
+    <text x="850" y="173" fill="#BAC8D9" font-size="14">#F9A8D4</text>
+
+    <rect x="532" y="202" width="26" height="26" rx="6" fill="#FB923C"/>
+    <text x="574" y="222" fill="#FB923C" font-size="18" font-weight="700">Server</text>
+    <text x="850" y="221" fill="#BAC8D9" font-size="14">#FB923C</text>
+
+    <rect x="532" y="250" width="26" height="26" rx="6" fill="#D9C18A"/>
+    <text x="574" y="270" fill="#D9C18A" font-size="18" font-weight="700">Economy</text>
+    <text x="850" y="269" fill="#BAC8D9" font-size="14">#D9C18A</text>
+
+    <rect x="532" y="298" width="26" height="26" rx="6" fill="#5EEAD4"/>
+    <text x="574" y="318" fill="#5EEAD4" font-size="18" font-weight="700">Event</text>
+    <text x="850" y="317" fill="#BAC8D9" font-size="14">#5EEAD4</text>
+
+    <rect x="532" y="346" width="26" height="26" rx="6" fill="#B8A4F8"/>
+    <text x="574" y="366" fill="#B8A4F8" font-size="18" font-weight="700">Staff</text>
+    <text x="850" y="365" fill="#BAC8D9" font-size="14">#B8A4F8</text>
+
+    <rect x="532" y="394" width="26" height="26" rx="6" fill="#BAC8D9"/>
+    <text x="574" y="414" fill="#BAC8D9" font-size="18" font-weight="700">Detail</text>
+    <text x="850" y="413" fill="#BAC8D9" font-size="14">#BAC8D9</text>
+  </g>
+</svg>

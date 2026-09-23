@@ -27,7 +27,7 @@ Use the palette without FeatureFramework:
 <dependency>
   <groupId>nl.hauntedmc.theme</groupId>
   <artifactId>hauntedmc-theme-palette</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
 </dependency>
 ```
 
@@ -37,7 +37,7 @@ FeatureFramework hosts can depend on the adapter instead; it brings in the palet
 <dependency>
   <groupId>nl.hauntedmc.theme</groupId>
   <artifactId>hauntedmc-theme-featureframework</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
 </dependency>
 ```
 
@@ -52,7 +52,7 @@ PaperFeatureHost.builder(plugin, Api.class, features)
 Localization can then use persistent colours or scoped effects:
 
 ```text
-<HauntedMC:Brand>◆ Friends  <HauntedMC:Text>No friends are online
+<HauntedMC:Social>✦ Friends <HauntedMC:Muted>· <HauntedMC:Text>No friends are online
 ```
 
 For code that builds Adventure components directly:
@@ -70,6 +70,14 @@ Component.text("Success", HauntedMcColor.SUCCESS.textColor());
 | `Error` | `#FB7185` |
 | `Muted` | `#94A3B8` |
 | `Text` | `#E2E8F0` |
+| `Social` | `#F9A8D4` |
+| `Server` | `#FB923C` |
+| `Economy` | `#D9C18A` |
+| `Event` | `#5EEAD4` |
+| `Staff` | `#B8A4F8` |
+| `Detail` | `#BAC8D9` |
+
+See the [colour contract](docs/color-contract.md) for source and state rules, message examples, and a dark-background palette preview. Existing colour values remain unchanged.
 
 Identifiers are resolved case-insensitively by FeatureFramework. Both artifacts are libraries, not server plugins;
 applications should include them in their distributable jar. The palette has a `provided` Adventure API dependency,

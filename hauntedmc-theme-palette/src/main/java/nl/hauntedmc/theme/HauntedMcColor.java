@@ -17,7 +17,19 @@ public enum HauntedMcColor {
     /** De-emphasized supporting-text colour. */
     MUTED("Muted", 0x94A3B8),
     /** Default readable foreground-text colour. */
-    TEXT("Text", 0xE2E8F0);
+    TEXT("Text", 0xE2E8F0),
+    /** Friends, private messages, and social activity. */
+    SOCIAL("Social", 0xF9A8D4),
+    /** Local backend and gameplay notices. */
+    SERVER("Server", 0xFB923C),
+    /** Balances, payments, lottery, and rewards. */
+    ECONOMY("Economy", 0xD9C18A),
+    /** Community events and invitations. */
+    EVENT("Event", 0x5EEAD4),
+    /** Staff chat, moderation, and staff alerts. */
+    STAFF("Staff", 0xB8A4F8),
+    /** Supporting information between default text and muted metadata. */
+    DETAIL("Detail", 0xBAC8D9);
 
     /** The identifier used by the FeatureFramework theme and its MiniMessage tags. */
     public static final String THEME_IDENTIFIER = "HauntedMC";
