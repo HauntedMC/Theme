@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
-    <parent><groupId>nl.hauntedmc.theme</groupId><artifactId>hauntedmc-theme-parent</artifactId><version>${revision}</version></parent>
+    <parent><groupId>nl.hauntedmc.platform</groupId><artifactId>haunted-library-parent</artifactId><version>1.6.10</version><relativePath/></parent>
+    <groupId>nl.hauntedmc.theme</groupId>
+    <version>${revision}</version>
     <artifactId>hauntedmc-theme-palette</artifactId>
+    <url>https://github.com/HauntedMC/Theme</url>
+    <licenses><license><name>GNU Affero General Public License v3.0</name><url>https://www.gnu.org/licenses/agpl-3.0.txt</url><distribution>repo</distribution></license></licenses>
+    <developers><developer><id>HauntedMC</id><name>HauntedMC</name><url>https://www.hauntedmc.nl</url></developer></developers>
+    <scm><connection>scm:git:https://github.com/HauntedMC/Theme.git</connection><developerConnection>scm:git:ssh://git@github.com/HauntedMC/Theme.git</developerConnection><url>https://github.com/HauntedMC/Theme</url><tag>HEAD</tag></scm>
+    <distributionManagement><repository><id>github</id><name>GitHub Packages - Theme</name><url>https://maven.pkg.github.com/HauntedMC/Theme</url></repository></distributionManagement>
+    <properties>
+        <revision>1.2.1</revision>
+        <project.build.outputTimestamp>2026-09-24T00:00:00Z</project.build.outputTimestamp>
+    </properties>
     <name>HauntedMC Theme Palette</name>
     <dependencies>
         <dependency><groupId>net.kyori</groupId><artifactId>adventure-api</artifactId><scope>provided</scope></dependency>
@@ -11,4 +22,8 @@
     <build><plugins><plugin><artifactId>maven-jar-plugin</artifactId><configuration><archive><manifestEntries>
         <Automatic-Module-Name>nl.hauntedmc.theme.palette</Automatic-Module-Name>
     </manifestEntries></archive></configuration></plugin></plugins></build>
+    <profiles><profile><id>release</id><build><plugins>
+        <plugin><artifactId>maven-source-plugin</artifactId><executions><execution><id>sources</id><goals><goal>jar-no-fork</goal></goals></execution></executions></plugin>
+        <plugin><artifactId>maven-javadoc-plugin</artifactId><executions><execution><id>javadocs</id><goals><goal>jar</goal></goals></execution></executions></plugin>
+    </plugins></build></profile></profiles>
 </project>

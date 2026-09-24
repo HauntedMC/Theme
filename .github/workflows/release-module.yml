@@ -1,0 +1,75 @@
+name: Publish a Theme module
+
+on:
+  workflow_call:
+    inputs:
+      module:
+        required: true
+        type: string
+      tag_prefix:
+        required: true
+        type: string
+      event_before:
+        required: false
+        type: string
+
+permissions:
+  contents: write
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      PACKAGES_USER: ${{ secrets.HAUNTEDMC_PACKAGES_USERNAME }}
+      PACKAGES_TOKEN: ${{ secrets.HAUNTEDMC_PACKAGES_TOKEN }}
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - id: gate
+        name: Detect a reviewed module version change
+        env:
+          GITHUB_EVENT_BEFORE: ${{ inputs.event_before }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+        run: python3 scripts/release-gate.py "${{ inputs.module }}/pom.xml" --tag-prefix "${{ inputs.tag_prefix }}"
+      - if: steps.gate.outputs.publish == 'true'
+        uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
+        with:
+          distribution: temurin
+          java-version: '25'
+          cache: maven
+          server-id: github
+          server-username: PACKAGES_USER
+          server-password: PACKAGES_TOKEN
+      - name: Publish selected module only
+        if: steps.gate.outputs.publish == 'true'
+        run: ./mvnw -U -B -ntp -f "${{ inputs.module }}/pom.xml" -Prelease deploy
+      - name: Resolve published module from a fresh Maven repository
+        if: steps.gate.outputs.publish == 'true'
+        run: python3 scripts/verify-published.py "${{ steps.gate.outputs.version }}" Theme --module "${{ inputs.module }}"
+      - name: Tag published module
+        if: steps.gate.outputs.publish == 'true'
+        run: gh release create "${{ steps.gate.outputs.tag }}" --target "$GITHUB_SHA" --title "Theme ${{ steps.gate.outputs.tag }}" --generate-notes
+      - name: Create cross-repository GitHub App token
+        if: steps.gate.outputs.publish == 'true'
+        id: app
+        uses: actions/create-github-app-token@v3
+        with:
+          app-id: ${{ vars.HAUNTEDMC_RELEASE_APP_ID }}
+          private-key: ${{ secrets.HAUNTEDMC_RELEASE_APP_PRIVATE_KEY }}
+          owner: HauntedMC
+      - name: Queue reviewed downstream update PRs
+        if: steps.gate.outputs.publish == 'true'
+        env:
+          DISPATCH_TOKEN: ${{ steps.app.outputs.token }}
+          RELEASE_VERSION: ${{ steps.gate.outputs.version }}
+          PRODUCER: ${{ inputs.module }}
+        run: |
+          GH_TOKEN="$DISPATCH_TOKEN" gh api repos/HauntedMC/HauntedPlatform/dispatches \
+            --method POST --input - <<EOF
+          {"event_type":"internal-release","client_payload":{"producer":"$PRODUCER","version":"$RELEASE_VERSION"}}
+          EOF

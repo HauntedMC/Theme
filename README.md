@@ -27,7 +27,7 @@ Use the palette without FeatureFramework:
 <dependency>
   <groupId>nl.hauntedmc.theme</groupId>
   <artifactId>hauntedmc-theme-palette</artifactId>
-  <version>1.2.0</version>
+  <version>1.2.1</version>
 </dependency>
 ```
 
@@ -37,7 +37,7 @@ FeatureFramework hosts can depend on the adapter instead; it brings in the palet
 <dependency>
   <groupId>nl.hauntedmc.theme</groupId>
   <artifactId>hauntedmc-theme-featureframework</artifactId>
-  <version>1.2.0</version>
+  <version>1.2.1</version>
 </dependency>
 ```
 
@@ -112,13 +112,9 @@ which Paper and Velocity already supply.
 
 ## Build and release
 
-Run `./mvnw verify` for the complete quality gate. Use `./update_version.sh major|minor|patch`
-from a clean worktree to prepare a local release commit and tag. Publishing uses the `github`
-Maven server configured by the release workflow.
+Run `./mvnw verify` for the complete quality gate. Palette and FeatureFramework adapter have independent versions and tags. From a clean worktree, run `./update_version.sh palette patch` or `./update_version.sh adapter patch`, review the changed POM in a PR, and merge after CI passes. The release workflow publishes the selected module, resolves it from a fresh Maven repository, and only then creates `palette-vX.Y.Z` or `adapter-vX.Y.Z`. If both change together, palette publishes first. The adapter may select a palette version only after that palette release exists.
 
-For a coordinated stack release, publish FeatureFramework first, then Theme, DataProvider, DataRegistry,
-and finally ServerFeatures and ProxyFeatures. This follows the dependency graph and keeps every downstream build
-resolvable from GitHub Packages.
+The [organization release guide](https://github.com/HauntedMC/HauntedPlatform/blob/main/docs/releasing.md) describes downstream updates and the GitHub App reconciler.
 
 ## Contributing and support
 
