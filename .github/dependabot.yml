@@ -8,6 +8,10 @@ updates:
       time: "06:00"
       timezone: "Europe/Amsterdam"
     open-pull-requests-limit: 10
+    groups:
+      haunted-platform-parent:
+        patterns:
+          - "nl.hauntedmc.platform:haunted-library-parent"
     labels:
       - "dependencies"
       - "java"
