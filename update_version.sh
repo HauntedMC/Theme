@@ -1,67 +1,49 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-readonly VERSION_PROPERTY="revision"
-readonly VERSIONS_PLUGIN="org.codehaus.mojo:versions-maven-plugin:2.18.0"
-readonly MODULES=(hauntedmc-theme-palette hauntedmc-theme-featureframework)
-
-die() {
-  echo "Error: $*" >&2
-  exit 1
-}
-
 usage() {
-  echo "Usage: ./update_version.sh <major|minor|patch>" >&2
+  echo 'Usage: ./update_version.sh [--dry-run] <palette|adapter> <major|minor|patch>' >&2
 }
 
-resolve_version() {
-  local module="${1:-}"
-  local -a module_args=()
-  local version
-  if [[ -n "$module" ]]; then
-    module_args=(-pl "$module")
-  fi
-  version="$(
-    ./mvnw -q -ntp "${module_args[@]}" -DforceStdout help:evaluate -Dexpression=project.version \
-      | awk '/^[0-9]+\.[0-9]+\.[0-9]+$/ { print; exit }'
-  )"
-  [[ -n "$version" ]] || die "Unable to resolve Maven version${module:+ for ${module}}."
-  printf '%s\n' "$version"
-}
-
-[[ $# -eq 1 ]] || { usage; exit 1; }
-[[ "$1" == "major" || "$1" == "minor" || "$1" == "patch" ]] || { usage; exit 1; }
-git rev-parse --is-inside-work-tree >/dev/null 2>&1 || die "Run this script inside the repository."
-
-repository_root="$(git rev-parse --show-toplevel)"
-cd "$repository_root"
-[[ -f pom.xml && -x mvnw ]] || die "pom.xml or executable mvnw is missing."
-[[ -z "$(git status --porcelain)" ]] || die "Working tree must be clean."
-
-current="$(resolve_version)"
-IFS=. read -r major minor patch <<<"$current"
+if [[ "${1:-}" == '--dry-run' ]]; then
+  dry_run=true
+  shift
+else
+  dry_run=false
+fi
+[[ $# -eq 2 ]] || { usage; exit 64; }
 case "$1" in
+  palette) module=hauntedmc-theme-palette; tag_prefix=palette ;;
+  adapter) module=hauntedmc-theme-featureframework; tag_prefix=adapter ;;
+  *) usage; exit 64 ;;
+esac
+case "$2" in major|minor|patch) bump="$2" ;; *) usage; exit 64 ;; esac
+cd "$(git rev-parse --show-toplevel)"
+pom="$module/pom.xml"
+current="$(./mvnw -q -ntp -f "$pom" -DforceStdout help:evaluate -Dexpression=project.version | awk '/^[0-9]+\.[0-9]+\.[0-9]+$/ { print; exit }')"
+[[ "$current" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "Invalid current version: $current" >&2; exit 1; }
+IFS=. read -r major minor patch <<< "$current"
+case "$bump" in
   major) major=$((major + 1)); minor=0; patch=0 ;;
   minor) minor=$((minor + 1)); patch=0 ;;
   patch) patch=$((patch + 1)) ;;
 esac
-next="${major}.${minor}.${patch}"
-tag="v${next}"
-git rev-parse -q --verify "refs/tags/${tag}" >/dev/null 2>&1 \
-  && die "Tag ${tag} already exists."
-
-./mvnw -B -ntp "${VERSIONS_PLUGIN}:set-property" \
-  -Dproperty="${VERSION_PROPERTY}" -DnewVersion="$next" -DgenerateBackupPoms=false
-for module in "${MODULES[@]}"; do
-  [[ "$(resolve_version "$module")" == "$next" ]] \
-    || die "Module ${module} did not resolve to ${next}."
-done
-
-./mvnw -B -ntp -Prelease verify
+next="$major.$minor.$patch"
+tag="$tag_prefix-v$next"
+echo "$module: $current -> $next ($tag)"
+[[ "$dry_run" == false ]] || exit 0
+[[ -z "$(git status --porcelain)" ]] || { echo 'Working tree must be clean.' >&2; exit 1; }
+git rev-parse -q --verify "refs/tags/$tag" >/dev/null 2>&1 && { echo "$tag already exists." >&2; exit 1; }
+CURRENT="$current" NEXT="$next" POM="$pom" python3 - <<'PY'
+import os
+from pathlib import Path
+p = Path(os.environ['POM'])
+s = p.read_text()
+old = f"<revision>{os.environ['CURRENT']}</revision>"
+new = f"<revision>{os.environ['NEXT']}</revision>"
+if s.count(old) != 1:
+    raise SystemExit(f'Expected one {old} in {p}')
+p.write_text(s.replace(old, new))
+PY
 git diff --check
-git add pom.xml
-git commit -m "Bump version to ${tag} for release"
-git tag --annotate "$tag" --message "Release ${tag}"
-
-echo "Version updated locally."
-echo "Next step: git push origin HEAD && git push origin ${tag}"
+echo 'Version prepared. Commit the changed POM in a pull request; CI will publish before creating the tag.'

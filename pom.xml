@@ -1,29 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
-    <parent><groupId>nl.hauntedmc.platform</groupId><artifactId>haunted-library-parent</artifactId><version>1.6.10</version><relativePath/></parent>
-    <groupId>nl.hauntedmc.theme</groupId><artifactId>hauntedmc-theme-parent</artifactId><version>${revision}</version><packaging>pom</packaging>
-    <name>HauntedMC Theme</name><description>Versioned HauntedMC colour palette and FeatureFramework theme adapter.</description><url>https://github.com/HauntedMC/Theme</url>
-    <licenses><license><name>GNU Affero General Public License v3.0</name><url>https://www.gnu.org/licenses/agpl-3.0.txt</url><distribution>repo</distribution></license></licenses>
-    <developers><developer><id>HauntedMC</id><name>HauntedMC</name><url>https://www.hauntedmc.nl</url></developer></developers>
-    <scm><connection>scm:git:https://github.com/HauntedMC/Theme.git</connection><developerConnection>scm:git:ssh://git@github.com/HauntedMC/Theme.git</developerConnection><url>https://github.com/HauntedMC/Theme</url><tag>HEAD</tag></scm>
-    <distributionManagement><repository><id>github</id><name>GitHub Packages - Theme</name><url>https://maven.pkg.github.com/HauntedMC/Theme</url></repository></distributionManagement>
-    <modules><module>hauntedmc-theme-palette</module><module>hauntedmc-theme-featureframework</module></modules>
-    <properties>
-        <!-- Compatibility target for the FeatureFramework adapter. -->
-        <haunted.featureframework.version>2.2.0</haunted.featureframework.version>
-        <revision>1.2.0</revision><project.build.outputTimestamp>2026-08-16T00:00:00Z</project.build.outputTimestamp>
-    </properties>
-    <repositories><repository><id>central</id><url>https://repo.maven.apache.org/maven2</url></repository><repository><id>github</id><url>https://maven.pkg.github.com/HauntedMC/*</url></repository></repositories>
-    <pluginRepositories><pluginRepository><id>github</id><url>https://maven.pkg.github.com/HauntedMC/*</url></pluginRepository></pluginRepositories>
-    <build><pluginManagement><plugins>
-        <!-- Theme's warning policy is stricter than the generic parent default. -->
-        <plugin><artifactId>maven-compiler-plugin</artifactId><configuration><failOnWarning>true</failOnWarning></configuration></plugin>
-    </plugins></pluginManagement></build>
-    <profiles><profile><id>release</id><build><plugins>
-        <plugin><artifactId>maven-source-plugin</artifactId><executions><execution><id>sources</id><goals><goal>jar-no-fork</goal></goals></execution></executions></plugin>
-        <plugin><artifactId>maven-javadoc-plugin</artifactId><executions><execution><id>javadocs</id><goals><goal>jar</goal></goals></execution></executions></plugin>
-    </plugins></build></profile></profiles>
+    <groupId>nl.hauntedmc.theme</groupId>
+    <artifactId>hauntedmc-theme-build</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>HauntedMC Theme build</name>
+    <description>Build-only aggregator for independently versioned Theme artifacts.</description>
+    <modules>
+        <module>hauntedmc-theme-palette</module>
+        <module>hauntedmc-theme-featureframework</module>
+    </modules>
 </project>
