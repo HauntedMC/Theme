@@ -112,7 +112,7 @@ which Paper and Velocity already supply.
 
 ## Build and release
 
-Run `./mvnw verify` for the complete quality gate. Palette and FeatureFramework adapter have independent versions and tags. From a clean worktree, run `./update_version.sh palette patch` or `./update_version.sh adapter patch`, review the changed POM in a PR, and merge after CI passes. The release workflow publishes the selected module, resolves it from a fresh Maven repository, and only then creates `palette-vX.Y.Z` or `adapter-vX.Y.Z`. If both change together, palette publishes first. The adapter may select a palette version only after that palette release exists.
+Run `./mvnw verify` for the complete quality gate. Palette and FeatureFramework adapter have independent versions and tags. From a clean worktree, run `./tools/release/update-version patch --component palette --pr` or `./tools/release/update-version patch --component adapter --pr`, review the changed POM in a PR, and merge after CI passes. The release workflow publishes the selected module, resolves it from a fresh Maven repository, and only then creates `palette-vX.Y.Z` or `adapter-vX.Y.Z`. If both change together, palette publishes first. The adapter may select a palette version only after that palette release exists.
 
 The [organization release guide](https://github.com/HauntedMC/HauntedPlatform/blob/main/docs/releasing.md) describes downstream updates and the GitHub App reconciler.
 

@@ -11,7 +11,7 @@ Run the complete local quality gate before opening a pull request:
 ```bash
 ./mvnw -B -ntp verify
 ./mvnw -B -ntp -Prelease package
-shellcheck update_version.sh
+shellcheck tools/release/update-version tools/release/prepare-version.sh
 ```
 
 ## Project boundaries

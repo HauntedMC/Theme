@@ -1,0 +1,16 @@
+[project]
+name = "Theme"
+repository = "HauntedMC/Theme"
+tool_version = "1.0.0"
+mode = "bump"
+prepare = "tools/release/prepare-version.sh"
+verify = ["./mvnw", "-B", "-ntp", "verify"]
+verify_before_pr = false
+
+[components.palette]
+pom = "hauntedmc-theme-palette/pom.xml"
+tag_prefix = "palette-v"
+
+[components.adapter]
+pom = "hauntedmc-theme-featureframework/pom.xml"
+tag_prefix = "adapter-v"

@@ -6,7 +6,7 @@ on:
       module:
         required: true
         type: string
-      tag_prefix:
+      component:
         required: true
         type: string
       event_before:
@@ -30,12 +30,16 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
+      - name: Install pinned release CLI
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh extension install HauntedMC/gh-haunted-release --pin 86bed2fdf7438ea3d6cc3b76f5c7cc36a58a46bf
       - id: gate
         name: Detect a reviewed module version change
         env:
           GITHUB_EVENT_BEFORE: ${{ inputs.event_before }}
           GITHUB_EVENT_NAME: ${{ github.event_name }}
-        run: python3 scripts/release-gate.py "${{ inputs.module }}/pom.xml" --tag-prefix "${{ inputs.tag_prefix }}"
+        run: gh haunted-release gate --component "${{ inputs.component }}"
       - if: steps.gate.outputs.publish == 'true'
         uses: actions/setup-java@de7274f081f381c8f8158605e0321c36c376e2e6 # v6.0.1
         with:
@@ -50,7 +54,7 @@ jobs:
         run: ./mvnw -U -B -ntp -f "${{ inputs.module }}/pom.xml" -Prelease deploy
       - name: Resolve published module from a fresh Maven repository
         if: steps.gate.outputs.publish == 'true'
-        run: python3 scripts/verify-published.py "${{ steps.gate.outputs.version }}" Theme --module "${{ inputs.module }}"
+        run: gh haunted-release verify-published "${{ steps.gate.outputs.version }}" --component "${{ inputs.component }}"
       - name: Tag published module
         if: steps.gate.outputs.publish == 'true'
         run: gh release create "${{ steps.gate.outputs.tag }}" --target "$GITHUB_SHA" --title "Theme ${{ steps.gate.outputs.tag }}" --generate-notes
