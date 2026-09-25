@@ -18,7 +18,7 @@ jobs:
     uses: ./.github/workflows/release-module.yml
     with:
       module: hauntedmc-theme-palette
-      tag_prefix: palette-
+      component: palette
       event_before: ${{ github.event.before }}
     secrets: inherit
   adapter:
@@ -26,6 +26,6 @@ jobs:
     uses: ./.github/workflows/release-module.yml
     with:
       module: hauntedmc-theme-featureframework
-      tag_prefix: adapter-
+      component: adapter
       event_before: ${{ github.event.before }}
     secrets: inherit

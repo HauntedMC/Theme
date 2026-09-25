@@ -67,4 +67,4 @@ jobs:
         run: ./mvnw -B -ntp -Prelease -DskipTests package
       - name: Check shell scripts
         shell: bash
-        run: shellcheck update_version.sh
+        run: shellcheck tools/release/update-version tools/release/prepare-version.sh

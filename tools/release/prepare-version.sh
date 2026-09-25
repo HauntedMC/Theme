@@ -2,7 +2,7 @@
 set -euo pipefail
 
 usage() {
-  echo 'Usage: ./update_version.sh [--dry-run] <palette|adapter> <major|minor|patch>' >&2
+  echo 'Usage: ./tools/release/update-version [--dry-run] <palette|adapter> <major|minor|patch>' >&2
 }
 
 if [[ "${1:-}" == '--dry-run' ]]; then
