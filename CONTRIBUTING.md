@@ -33,3 +33,7 @@ shellcheck tools/release/update-version tools/release/prepare-version.sh
 ## Security
 
 Do not disclose vulnerabilities in public issues. Follow [SECURITY.md](SECURITY.md).
+
+## Fork pull requests
+
+Fork PRs run with a read-only GitHub token and receive no repository package secrets. CI attempts to resolve public HauntedMC Maven packages with that token and still runs static checks. If GitHub Packages denies cross-repository access, the required Maven check cannot pass on the fork; a maintainer reviews the change and opens an upstream branch PR for full CI before merge. Never include a package token in a PR or build log.

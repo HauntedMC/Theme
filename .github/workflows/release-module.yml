@@ -12,15 +12,24 @@ on:
       event_before:
         required: false
         type: string
+    secrets:
+      HAUNTEDMC_PACKAGES_USERNAME:
+        required: true
+      HAUNTEDMC_PACKAGES_TOKEN:
+        required: true
+      HAUNTEDMC_RELEASE_APP_PRIVATE_KEY:
+        required: true
 
 permissions:
-  contents: write
-  packages: write
+  contents: read
 
 jobs:
   publish:
     runs-on: ubuntu-24.04
     timeout-minutes: 30
+    permissions:
+      contents: write
+      packages: write
     env:
       PACKAGES_USER: ${{ secrets.HAUNTEDMC_PACKAGES_USERNAME }}
       PACKAGES_TOKEN: ${{ secrets.HAUNTEDMC_PACKAGES_TOKEN }}
@@ -33,7 +42,7 @@ jobs:
       - name: Install pinned release CLI
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh extension install HauntedMC/gh-haunted-release --pin ed440a0a2d5ab23af30c36bb22132f8ffa0ea33f
+        run: gh extension install HauntedMC/gh-haunted-release --pin de43c102d81797001eef36fe45725744fdd22031
       - id: gate
         name: Detect a reviewed module version change
         env:
@@ -49,8 +58,12 @@ jobs:
           server-id: github
           server-username: PACKAGES_USER
           server-password: PACKAGES_TOKEN
-      - name: Publish selected module only
+      - id: preflight
+        name: Inspect already published Maven coordinates
         if: steps.gate.outputs.publish == 'true'
+        run: gh haunted-release published-state "${{ steps.gate.outputs.version }}" --component "${{ inputs.component }}"
+      - name: Publish selected module only
+        if: steps.preflight.outputs.state == 'none'
         run: ./mvnw -U -B -ntp -f "${{ inputs.module }}/pom.xml" -Prelease deploy
       - name: Resolve published module from a fresh Maven repository
         if: steps.gate.outputs.publish == 'true'
@@ -61,7 +74,7 @@ jobs:
       - name: Create cross-repository GitHub App token
         if: steps.gate.outputs.publish == 'true'
         id: app
-        uses: actions/create-github-app-token@v3
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3
         with:
           app-id: ${{ vars.HAUNTEDMC_RELEASE_APP_ID }}
           private-key: ${{ secrets.HAUNTEDMC_RELEASE_APP_PRIVATE_KEY }}
