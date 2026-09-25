@@ -10,22 +10,33 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: write
-  packages: write
+  contents: read
 
 jobs:
   palette:
     uses: ./.github/workflows/release-module.yml
+    permissions:
+      contents: write
+      packages: write
     with:
       module: hauntedmc-theme-palette
       component: palette
       event_before: ${{ github.event.before }}
-    secrets: inherit
+    secrets:
+      HAUNTEDMC_PACKAGES_USERNAME: ${{ secrets.HAUNTEDMC_PACKAGES_USERNAME }}
+      HAUNTEDMC_PACKAGES_TOKEN: ${{ secrets.HAUNTEDMC_PACKAGES_TOKEN }}
+      HAUNTEDMC_RELEASE_APP_PRIVATE_KEY: ${{ secrets.HAUNTEDMC_RELEASE_APP_PRIVATE_KEY }}
   adapter:
     needs: palette
     uses: ./.github/workflows/release-module.yml
+    permissions:
+      contents: write
+      packages: write
     with:
       module: hauntedmc-theme-featureframework
       component: adapter
       event_before: ${{ github.event.before }}
-    secrets: inherit
+    secrets:
+      HAUNTEDMC_PACKAGES_USERNAME: ${{ secrets.HAUNTEDMC_PACKAGES_USERNAME }}
+      HAUNTEDMC_PACKAGES_TOKEN: ${{ secrets.HAUNTEDMC_PACKAGES_TOKEN }}
+      HAUNTEDMC_RELEASE_APP_PRIVATE_KEY: ${{ secrets.HAUNTEDMC_RELEASE_APP_PRIVATE_KEY }}
