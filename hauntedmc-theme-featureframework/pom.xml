@@ -11,10 +11,10 @@
     <scm><connection>scm:git:https://github.com/HauntedMC/Theme.git</connection><developerConnection>scm:git:ssh://git@github.com/HauntedMC/Theme.git</developerConnection><url>https://github.com/HauntedMC/Theme</url><tag>HEAD</tag></scm>
     <distributionManagement><repository><id>github</id><name>GitHub Packages - Theme</name><url>https://maven.pkg.github.com/HauntedMC/Theme</url></repository></distributionManagement>
     <properties>
-        <revision>1.2.2</revision>
+        <revision>1.2.3</revision>
         <project.build.outputTimestamp>2026-09-24T00:00:00Z</project.build.outputTimestamp>
         <haunted.theme.palette.version>1.2.2</haunted.theme.palette.version>
-        <haunted.featureframework.version>2.2.1</haunted.featureframework.version>
+        <haunted.featureframework.version>2.2.2</haunted.featureframework.version>
     </properties>
     <name>HauntedMC FeatureFramework Theme</name>
     <dependencies>
